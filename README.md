@@ -38,14 +38,13 @@ This project implements a **Conditional GAN** using TensorFlow/Keras to generate
 - ✅ **Multi-Class Support**: Generates images for 9 different skin cancer classes
 - ✅ **Conditional Generation**: Class-specific image synthesis
 - ✅ **GPU Acceleration**: Optimized for NVIDIA GPUs (tested on P100)
-- ✅ **Real-time Visualization**: Progress tracking during training
+- ✅ **Visualization**: Progress tracking during training
 - ✅ **Model Persistence**: Save and load trained models
 
 ### Advanced Techniques
 - 🚀 LeakyReLU activations for stable training
 - 🎯 Batch normalization for faster convergence
 - 🔄 Label conditioning in both Generator and Discriminator
-- 📊 Progressive training with epoch-based monitoring
 - 💾 Automatic checkpoint saving
 
 ## 📊 Dataset
@@ -65,7 +64,7 @@ This project implements a **Conditional GAN** using TensorFlow/Keras to generate
 
 ### Data Specifications:
 - **Image Size**: 64×64 pixels (RGB)
-- **Format**: PNG/JPEG
+- **Format**: JPEG
 - **Organization**: Class-based directory structure
 - **Preprocessing**: Normalization to [-1, 1] range
 
@@ -103,31 +102,10 @@ Flatten + Dense(1) + Sigmoid
 Output: Real/Fake Classification
 ```
 
-## 🚀 Installation
-
-### Prerequisites
-```bash
-Python 3.11+
-CUDA Toolkit (for GPU support)
-```
-
 ### Clone Repository
 ```bash
 git clone https://github.com/abdulhasibuddin/cgan-for-medical-images.git
 cd cgan-for-medical-images
-```
-
-### Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-**requirements.txt:**
-```
-tensorflow>=2.18.0
-numpy>=1.24.0
-pillow>=10.0.0
-matplotlib>=3.7.0
 ```
 
 ## 💻 Usage
@@ -148,7 +126,7 @@ output_dir = '/path/to/output/generated_images/'
 # (See notebook for complete implementation)
 
 # Train the model
-gan.fit(dataset, epochs=100, verbose=1)
+gan.fit(dataset, epochs=100000, verbose=1)
 ```
 
 ### Generate Images
@@ -177,45 +155,20 @@ discriminator = keras.models.load_model('discriminator.keras')
 ## 📈 Results
 
 ### Training Metrics
-- **Training Epochs**: 100
-- **Batch Size**: 32
+- **Training Epochs**: 100000
+- **Batch Size**: 16
 - **Latent Dimension**: 100
 - **GPU**: NVIDIA Tesla P100
-- **Training Time**: ~45 minutes
+- **Training Time**: ~8 hours 45 minutes
 
 ### Sample Generated Images
 
 The model successfully generates class-specific synthetic skin cancer images with realistic textures and patterns. Generated images are saved at regular intervals during training.
 
 ### Model Performance
-- Generator Loss: Converges after ~50 epochs
+- Generator Loss: Stable
 - Discriminator Loss: Maintains balance with generator
-- Image Quality: High-quality, diverse samples per class
-
-## 📁 Project Structure
-
-```
-cgan-skin-cancer/
-├── README.md
-├── requirements.txt
-├── LICENSE
-├── notebook/
-│   └── cgan-kaggle-2-successful-skin-cancer.ipynb
-├── models/
-│   ├── generator.keras
-│   ├── discriminator.keras
-│   └── gan.keras
-├── data/
-│   └── skin-cancer-dataset/
-├── generated_images/
-│   ├── epoch_10/
-│   ├── epoch_20/
-│   └── ...
-└── src/
-    ├── model.py
-    ├── train.py
-    └── utils.py
-```
+- Image Quality: Optimal-quality, diverse samples per class
 
 ## 🔧 Technical Details
 
@@ -226,8 +179,8 @@ cgan-skin-cancer/
 | `latent_dim` | 100 | Noise vector dimension |
 | `img_shape` | (64, 64, 3) | Input image dimensions |
 | `num_classes` | 9 | Number of disease classes |
-| `batch_size` | 32 | Training batch size |
-| `epochs` | 100 | Total training epochs |
+| `batch_size` | 16 | Training batch size |
+| `epochs` | 100000 | Total training epochs |
 | `learning_rate` | 0.0002 | Adam optimizer LR |
 | `beta_1` | 0.5 | Adam momentum term |
 
@@ -239,16 +192,6 @@ cgan-skin-cancer/
 4. **Binary Cross-Entropy Loss**: Standard GAN loss function
 5. **Adam Optimizer**: Learning rate 0.0002, beta_1=0.5
 
-### Data Augmentation Pipeline
-
-```python
-# Normalize images to [-1, 1]
-images = (images.astype('float32') - 127.5) / 127.5
-
-# Shuffle and batch
-dataset = tf.data.Dataset.from_tensor_slices((images, labels))
-dataset = dataset.shuffle(buffer_size=1024).batch(batch_size)
-```
 
 ## 🤝 Contributing
 
@@ -272,18 +215,12 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Dataset**: [ISIC - International Skin Imaging Collaboration](https://www.kaggle.com/datasets/nodoubttome/skin-cancer9-classesisic)
 - **Inspiration**: Original cGAN paper by Mehdi Mirza and Simon Osindero
 - **Framework**: TensorFlow/Keras team for excellent deep learning tools
 - **Platform**: Kaggle for providing free GPU resources
-
-## 📚 References
-
-1. Mirza, M., & Osindero, S. (2014). Conditional Generative Adversarial Nets. arXiv preprint arXiv:1411.1784.
-2. Goodfellow, I., et al. (2014). Generative Adversarial Networks. NIPS.
-3. Radford, A., et al. (2015). Unsupervised Representation Learning with Deep Convolutional GANs. arXiv:1511.06434.
 
 ## 📧 Contact
 
