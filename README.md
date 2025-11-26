@@ -228,7 +228,7 @@ For questions or collaboration opportunities:
 
 - **GitHub**: [@abdulhasibuddin](https://github.com/abdulhasibuddin)
 - **Email**: abdulhasibuddin2@gmail.com
-- **LinkedIn**: [Your Name](https://linkedin.com/in/abdul-hasib-uddin)
+- **LinkedIn**: [Abdul Hasib Uddin](https://linkedin.com/in/abdul-hasib-uddin)
 
 ---
 
